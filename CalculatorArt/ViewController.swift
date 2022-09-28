@@ -28,8 +28,8 @@ class ViewController: UIViewController {
     @IBAction func calcButtonPressed(_ sender: UIButton) {
         
         //What should happen when a non-number button is pressed
-        
-//        isFinishedTypingNumber = true
+
+        isFinishedTypingNumber = true
 //
 //        calculator.setNumber(displayValue)
 //
@@ -42,11 +42,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func numButtonPressed(_ sender: UIButton) {
-        
-        if let numValue = sender.currentTitle {
-            displayLabel.text! += numValue
-        }
         //What should happen when a number is entered into the keypad
+        if let numValue = sender.currentTitle {
+            
+            if isFinishedTypingNumber {
+                displayLabel.text = numValue
+                isFinishedTypingNumber = false
+            } else {
+                displayLabel.text = displayLabel.text! + numValue
+                
+            }
+        }
+
         
     }
     
