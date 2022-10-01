@@ -28,13 +28,11 @@ class ViewController: UIViewController {
         //What should happen when a non-number button is pressed
         isFinishedTypingNumber = true
         if let calcMethod = sender.currentTitle {
-            if calcMethod == "+/-" {
-                displayValue = displayValue * -1
-            } else if calcMethod == "AC" {
-                displayLabel.text = "0"
-            } else if calcMethod == "%" {
-               displayValue = displayValue / 100
+            let calculator = CalculatorLogic(number: displayValue)
+            guard let result = calculator.calculate(symbol: calcMethod) else {
+                fatalError("The result of the calculation is nil.")
             }
+            displayValue = result
         }
     }
     
